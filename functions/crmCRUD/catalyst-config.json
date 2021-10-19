@@ -1,0 +1,10 @@
+{
+	"deployment": {
+		"name": "crmCRUD",
+		"stack": "java8",
+		"type": "advancedio"
+	},
+	"execution": {
+		"main": "CRMCRUD"
+	}
+}

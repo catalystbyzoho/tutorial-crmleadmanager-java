@@ -1,0 +1,14 @@
+{
+  "functions": {
+    "targets": [
+      "crmCRUD"
+    ],
+    "ignore": [
+      ".output"
+    ],
+    "source": "functions"
+  },
+  "client": {
+    "source": "client"
+  }
+}

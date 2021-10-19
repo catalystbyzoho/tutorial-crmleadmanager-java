@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>CRM Lead Manager</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="main.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.19.1/css/mdb.min.css" rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+        </script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
+        </script>
+    <script src="main.js"></script>
+    <script src="https://static.zohocdn.com/catalyst/sdk/js/2.0.0/catalystWebSDK.js"></script>
+    <script src="/__catalyst/sdk/init.js"></script>
+
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <style>
+        #connect {
+            height: 260px;
+            width: 500px;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body onload="getUserDetails()">
+    <br>
+    <center>
+        <h1>CRM Lead Manager</h1><br>
+    </center>
+    <div id="connect">
+
+
+        <center>
+            <p>Click here to connect to Zoho CRM</p>
+            <button onclick='navigate()'>
+                <img src="https://www.zohowebstatic.com/sites/default/files/styles/product-home-page/public/icon-crm_blue.png"
+                    style="width: 180px;height: 130px;">
+            </button>
+        </center>
+    </div>
+
+    <div style="width: 200px;float: right; margin-right: 30px;"><label for="logoutbtn"
+            class="btn btn-success btn-block btn-outlined">Logout</label>
+        <button id="logoutbtn" onclick="logout()" style="display: none;"></button>
+    </div>
+    <div id="main">
+        <div class="container">
+            <ul class="nav nav-tabs nav-justified mb-3" id="myTab" role="tablist">
+                <li class="nav-item">
+                    <a class="nav-link active" id="check-tab" data-toggle="tab" href="#check" role="tab"
+                        aria-controls="check" aria-selected="true">Add a Lead</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" id="report-tab" data-toggle="tab" href="#report" onclick="getLeads()" role="tab"
+                        aria-controls="report" aria-selected="false">Manage Leads</a>
+                </li>
+            </ul><br>
+            <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="check" role="tabpanel" aria-labelledby="check-tab">
+                    <div class="tab-pane fade show active" id="ex3-tabs-1" role="tabpanel" aria-labelledby="ex3-tab-1">
+                        <div style="margin-left: 100px; margin-right:100px;">
+                            <form id="leads">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form6Example1">First name</label>
+                                            <input type="text" id="firstName" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form6Example2">Last name</label>
+                                            <input type="text" id="lastName" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Text input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example3">Company name</label>
+                                    <input type="text" id="companyName" class="form-control" />
+
+                                </div>
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example5">Email</label>
+                                    <input type="email" id="email" class="form-control" />
+
+                                </div>
+
+                                <!-- Text input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example4">State</label>
+                                    <input type="text" id="state" class="form-control" />
+
+                                </div>
+
+                                <!-- Number input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example6">Phone</label>
+                                    <input type="number" id="phone" class="form-control" />
+
+                                </div>
+
+                                <!-- Number input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example6">Lead Source</label>
+                                    <input type="text" id="leadSource" class="form-control" />
+
+                                </div>
+                                <!-- Submit button -->
+                                <center><button type="submit" onclick="createLead();return false;"
+                                        class="btn btn-primary btn-block mb-4" style="width: 100px;">Add Lead</button>
+
+                                    <div id="loader" style="display: none;">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </center>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="report" role="tabpanel" aria-labelledby="report-tab">
+                    <center>
+                        <div id="loaders" style="display: none; padding-top: 200px;">
+                            <div class="spinner-border" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
+                        </div>
+                    </center>
+                    <p id="showData"></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-content">
+                        <center>
+                            <h4 class="modal-title" id="myModalLabel"></h4>
+                            <div class="modal-body" id="message"></div>
+                            <div class="modal-footer">
+                                <button type="button" style="background-color: #007bff;color: white;"
+                                    class="btn btn-default" data-dismiss="modal">Close</button>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="editForm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+
+            <div class="vertical-alignment-helper">
+                <div class="modal-dialog vertical-align-center">
+                    <div class="modal-content">
+                        <div style="margin-left: 80px; margin-right:80px;">
+                            <br>
+                            <center>
+                                <h2>Edit Lead</h2>
+                            </center>
+                            <br>
+                            <form id="editLeads">
+                                <!-- 2 column grid layout with text inputs for the first and last names -->
+                                <div class="row mb-4">
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form6Example1">First name</label>
+                                            <input type="text" id="editfirstName" class="form-control" />
+
+                                        </div>
+                                    </div>
+                                    <div class="col">
+                                        <div class="form-outline">
+                                            <label class="form-label" for="form6Example2">Last name</label>
+                                            <input type="text" id="editlastName" class="form-control" required />
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Text input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example3">Company name</label>
+                                    <input type="text" id="editcompanyName" class="form-control" />
+
+                                </div>
+
+                                <!-- Email input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example5">Email</label>
+                                    <input type="email" id="editemail" class="form-control" />
+
+                                </div>
+
+                                <!-- Text input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example4">State</label>
+                                    <input type="text" id="editstate" class="form-control" />
+
+                                </div>
+
+                                <!-- Number input -->
+                                <div class="form-outline mb-4">
+                                    <label class="form-label" for="form6Example6">Phone</label>
+                                    <input type="number" id="editphone" class="form-control" />
+
+                                </div>
+
+                                <!-- Submit button -->
+                                <center><button type="submit" id="editBtn" onclick="editLead();return false;"
+                                        class="btn btn-primary btn-block mb-4" style="width: 100px;">Edit</button>
+
+                                    <div id="loader" style="display: none;">
+                                        <div class="spinner-border" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                    </div>
+                                </center>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="modal fade right" id="ModalDanger" tabindex="-1" role="dialog" aria-labelledby="myModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-notify modal-danger modal-side modal-top-right" role="document">
+                <!--Content-->
+                <div class="modal-content">
+                    <!--Header-->
+                    <div class="modal-header">
+                        <p class="heading">Lead Deletion</p>
+
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" class="white-text">×</span>
+                        </button>
+                    </div>
+
+                    <!--Body-->
+                    <div class="modal-body">
+
+                        <div class="row">
+                            <div class="col-9">
+                                <p>Are you sure you want to delete the Lead?</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!--Footer-->
+                    <div class="modal-footer justify-content-center">
+                        <a type="button" class="btn btn-danger" id="delete-btn" onclick="deleteLead()">Delete</a>
+                        <a type="button" class="btn btn-outline-danger waves-effect" data-dismiss="modal">Cancel</a>
+                    </div>
+                </div>
+                <!--/.Content-->
+            </div>
+        </div>
+    </div>
+</body>
+<script>
+    //Add Your Client ID and Redirect URL here
+    function navigate() {
+        window.location.href = 'https://accounts.zoho.com/oauth/v2/auth?scope=ZohoCRM.modules.ALL&client_id=1000.7CFOIU9YIXMHR4KYF4HC9E5VB41UQX&response_type=code&access_type=offline&redirect_uri=https://leadmanager-721459367.development.catalystserverless.com/server/crm_crud/generateToken';
+    }
+</script>
+
+</html>

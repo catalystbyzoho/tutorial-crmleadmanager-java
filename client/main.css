@@ -1,0 +1,43 @@
+#dataTable {
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #dataTable td, #dataTable th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #dataTable tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #dataTable tr:hover {background-color: #ddd;}
+  
+  #dataTable th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #007bff;
+    color: white;
+  }
+
+  .vertical-alignment-helper {
+    display: table;
+    height: 100%;
+    width: 100%;
+    pointer-events: none;
+}
+
+.vertical-align-center {
+    display: table-cell;
+    vertical-align: middle;
+    pointer-events: none;
+}
+
+.modal-content {
+    width: inherit;
+    max-width: inherit;
+    height: inherit;
+    margin: 0 auto;
+    pointer-events: all;
+}
