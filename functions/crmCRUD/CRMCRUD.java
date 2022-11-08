@@ -34,8 +34,8 @@ public class CRMCRUD implements CatalystAdvancedIOHandler {
 	private String POST = "POST";
 	private String PUT = "PUT";
 	private String DELETE = "DELETE";
-	private String CLIENT_ID = "1000.7CFOIU9YIXMHR4KYF4HC9E5VB41UQX"; //Add your client ID
-	private String CLIENT_SECRET = "2e19b277d05b44c1ad7e542540198a4982089df211"; //Add your client secret
+	private String CLIENT_ID = "{{YOUR_CLIENT_ID}}"; //Add your client ID
+	private String CLIENT_SECRET = "{{YOUR_CLIENT_SECRET}}"; //Add your client secret
 	OkHttpClient client = new OkHttpClient();
 
 	@Override
